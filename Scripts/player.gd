@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 190.0
-const INIT_SPEED = 50.0
-const ACCEL = 800.0
+const MAX_SPEED = 150.0
+const INIT_SPEED = 30.0
+const ACCEL = 600.0
 const JUMP_VELOCITY = -275.0
-const JUMP_TIME = 0.4
+const JUMP_TIME = 0.3
 const JUMP_BUFFER = 0.15
 const COYOTE_TIME = 0.15
-const WALL_TIME = 0.25
+const WALL_TIME = 0.20
 
 var jump_timer = 0
 var jump_buffer_timer = 0
@@ -17,6 +17,7 @@ var wall_jump_x = 0
 var coyote_timer = 0
 var slip = 0.0
 var momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
+var falling = false
 
 @onready var RLO: RayCast2D = $RayLeftOuter
 @onready var RLI: RayCast2D = $RayLeftInner
@@ -27,13 +28,20 @@ var momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
 @onready var RLF: RayCast2D = $RayLeftFloor
 @onready var RRF: RayCast2D = $RayRightFloor
 
+@onready var sprite = $Sprite2D
+@onready var animplayer = $AnimationPlayer
+
+func _process(delta: float) -> void:
+  pass
+  
 func _physics_process(delta: float) -> void:
   if not is_on_floor():
       if velocity.y < 0:
         velocity += get_gravity() * delta
       else:
         if not (RLW.is_colliding() or RRW.is_colliding()):
-          velocity += get_gravity() * delta * 2
+          velocity += get_gravity() * delta * 1.5
+          falling = true
         else:
           velocity = get_gravity() * delta * 2.5
   else:
@@ -144,5 +152,23 @@ func _physics_process(delta: float) -> void:
   else:
     if coyote_timer > 0:
       coyote_timer -= delta
+
+  var direction = Input.get_axis("Left", "Right")
+  if direction:
+    animplayer.play("Run")
+    sprite.flip_h = direction < 0
+  if falling and is_on_floor():
+    falling = false
+    animplayer.play("Landing")
+  if !is_on_floor():
+    if velocity.y < 0:
+      animplayer.play("Jump up")
+    if velocity.y > 0:
+      animplayer.play("Jump down")
+    
+  if !animplayer.is_playing():
+    animplayer.play("Idle")
+    
+  animplayer.advance(0)
 
   move_and_slide()

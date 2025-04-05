@@ -14,8 +14,8 @@ func reset():
     node.queue_free()
   for node in platforms:
     var platform_instance = platform.instantiate()
-    add_child(platform_instance)
-    platform_instance.transform = node[0]
-    platform_instance.dist = node[1]
-    platform_instance.duration = node[2]
-    platform_instance.setup()
+    self.call_deferred("add_child", platform_instance)
+    platform_instance.set_deferred("transform", node[0])
+    platform_instance.set_deferred("dist", node[1])
+    platform_instance.set_deferred("duration", node[2])
+    platform_instance.call_deferred("setup")

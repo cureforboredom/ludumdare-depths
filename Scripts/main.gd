@@ -34,8 +34,8 @@ func reset():
   if player_instance:
     player_instance.queue_free()
   player_instance = player.instantiate()
-  add_child(player_instance)
-  player_instance.position = player_start
+  self.call_deferred("add_child", player_instance)
+  player_instance.set_deferred("position", player_start)
   
   platforms.reset()
 

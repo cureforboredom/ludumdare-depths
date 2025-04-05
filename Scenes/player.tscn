@@ -1,25 +1,144 @@
-[gd_scene load_steps=4 format=3 uid="uid://dplgh8qaopqml"]
+[gd_scene load_steps=11 format=3 uid="uid://dplgh8qaopqml"]
 
 [ext_resource type="Script" uid="uid://wae7u45nj3y6" path="res://Scripts/player.gd" id="1_kyqiw"]
-[ext_resource type="Texture2D" uid="uid://i3va343b8dk8" path="res://icon.svg" id="2_gntrk"]
+[ext_resource type="Texture2D" uid="uid://cpfqe582pa5we" path="res://Assets/hammertime-Sheet.png" id="2_cvnsp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
-size = Vector2(16, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 7.5
+height = 28.0
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "Idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333, 1.53333, 2.36667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+resource_name = "Idle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "Jump up"
+length = 0.2
+markers = [{
+"color": Color(0.462745, 1, 1, 1),
+"name": &"up1",
+"time": 0.00540269
+}, {
+"color": Color(0.863436, 5.31845e-06, 7.70092e-07, 1),
+"name": &"up2",
+"time": 0.233333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"down1",
+"time": 1.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"down2",
+"time": 1.28044
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+resource_name = "Jump down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "Run"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x3wgy"]
+_data = {
+&"Idle": SubResource("Animation_cvnsp"),
+&"Jump down": SubResource("Animation_x3wgy"),
+&"Jump up": SubResource("Animation_vgqql"),
+&"Landing": SubResource("Animation_fkybt"),
+&"RESET": SubResource("Animation_6t5aa"),
+&"Run": SubResource("Animation_3smsa")
+}
 
 [node name="Player" type="CharacterBody2D"]
 floor_max_angle = 1.0472
 floor_snap_length = 3.0
 script = ExtResource("1_kyqiw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.145, 0.203)
-texture = ExtResource("2_gntrk")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_kyqiw")
+shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="RayLeftOuter" type="RayCast2D" parent="."]
-position = Vector2(-8, 0)
+position = Vector2(-7, 0)
 target_position = Vector2(0, -40)
 
 [node name="RayLeftInner" type="RayCast2D" parent="."]
@@ -27,7 +146,7 @@ position = Vector2(-2, 0)
 target_position = Vector2(0, -40)
 
 [node name="RayRightOuter" type="RayCast2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(7, 0)
 target_position = Vector2(0, -40)
 
 [node name="RayRightInner" type="RayCast2D" parent="."]
@@ -39,24 +158,32 @@ position = Vector2(6, 0)
 target_position = Vector2(3, 0)
 
 [node name="RayLeftWall" type="RayCast2D" parent="."]
-position = Vector2(-6, 0)
+position = Vector2(-5, 0)
 target_position = Vector2(-3, 0)
 
 [node name="RayLeftFloor" type="RayCast2D" parent="."]
-position = Vector2(4, 12)
+position = Vector2(4, 13)
 target_position = Vector2(0, 3)
 
 [node name="RayRightFloor" type="RayCast2D" parent="."]
-position = Vector2(-5, 12)
+position = Vector2(-5, 13)
 target_position = Vector2(0, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.55, 0.55)
 position_smoothing_enabled = true
-position_smoothing_speed = 4.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.15
+drag_left_margin = 0.12
 drag_top_margin = 0.15
 drag_right_margin = 0.15
 drag_bottom_margin = 0.15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cvnsp")
+hframes = 5
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x3wgy")
+}

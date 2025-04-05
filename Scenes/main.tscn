@@ -18,7 +18,7 @@ position = Vector2(0, 192.275)
 
 [node name="Treadmill" parent="." instance=ExtResource("5_hptm8")]
 position = Vector2(352, 320)
-speed = 75
+speed = 60
 
 [node name="Low Grav" parent="." instance=ExtResource("6_d1ilt")]
 position = Vector2(496, 448)
@@ -50,12 +50,12 @@ dist = Vector2(258, 0)
 [node name="MovingPlatform2" parent="Platforms" instance=ExtResource("9_hptm8")]
 position = Vector2(552, 280)
 dist = Vector2(0, -200.15)
-duration = 0.75
+duration = 2.0
 
 [node name="MovingPlatform3" parent="Platforms" instance=ExtResource("9_hptm8")]
 position = Vector2(88, 256)
 dist = Vector2(150, -150)
-duration = 10.0
+duration = 6.0
 
 [connection signal="reset" from="Hazard" to="." method="_on_hazard_reset"]
 [connection signal="reset" from="Hazard2" to="." method="_on_hazard_reset"]
