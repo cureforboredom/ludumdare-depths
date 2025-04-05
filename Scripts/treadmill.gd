@@ -6,3 +6,6 @@ extends StaticBody2D
 
 func _ready() -> void:
   constant_linear_velocity = Vector2(speed, 0)
+  
+func momentum() -> Dictionary:
+  return {"speed": 150, "dir": 1, "jump": false}

@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://jar0bg1rutww"]
+[gd_scene load_steps=3 format=3 uid="uid://jar0bg1rutww"]
 
 [ext_resource type="Script" uid="uid://i3c8khy5kneo" path="res://Scripts/moving_platform.gd" id="1_vvyo4"]
+[ext_resource type="Script" uid="uid://8w0b5m1g82rs" path="res://Scripts/anim_body.gd" id="2_anqd2"]
 
 [node name="MovingPlatform" type="Node2D"]
 script = ExtResource("1_vvyo4")
 
 [node name="AnimBody" type="AnimatableBody2D" parent="."]
+script = ExtResource("2_anqd2")
 
 [node name="Collider" type="CollisionPolygon2D" parent="AnimBody"]
 polygon = PackedVector2Array(0, 0, 64, 0, 64, 16, 0, 16)

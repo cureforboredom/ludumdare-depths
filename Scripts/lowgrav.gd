@@ -7,4 +7,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
   if body is CharacterBody2D:
-    body.velocity.y = clamp(body.velocity.y, speed, speed * 2)
+    if body.velocity.y > speed:
+      body.velocity.y = speed
