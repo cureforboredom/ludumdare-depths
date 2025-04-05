@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkcdvyo0iltr4"]
+
+[ext_resource type="Script" uid="uid://cs3i0gxsc2i6r" path="res://Scripts/level_exit.gd" id="1_rpjwh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5ydo"]
+size = Vector2(32, 32)
+
+[node name="LevelExit" type="Area2D"]
+script = ExtResource("1_rpjwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a5ydo")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

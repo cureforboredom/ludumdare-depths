@@ -1,72 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://wpox10kj0sic"]
+[gd_scene load_steps=8 format=3 uid="uid://wpox10kj0sic"]
 
 [ext_resource type="Script" uid="uid://b1hww18xtk5vv" path="res://Scripts/main.gd" id="1_6bp64"]
-[ext_resource type="PackedScene" uid="uid://dplgh8qaopqml" path="res://Scenes/Player.tscn" id="2_jjvhh"]
-[ext_resource type="Script" uid="uid://dg0p1o34i2h5d" path="res://Scripts/map.gd" id="3_8gbba"]
-[ext_resource type="Script" uid="uid://i3c8khy5kneo" path="res://Scripts/animatable_body_2d.gd" id="3_jjvhh"]
-[ext_resource type="Script" uid="uid://tdmoqbqpwmtb" path="res://Scripts/treadmill.gd" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://ckx3fn4ialwk0" path="res://Scripts/lowgrav.gd" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://bda876ky035x5" path="res://Scenes/map.tscn" id="3_344ge"]
+[ext_resource type="PackedScene" uid="uid://c0ja4g7caa788" path="res://Scenes/treadmill.tscn" id="5_hptm8"]
+[ext_resource type="PackedScene" uid="uid://clmfk82iclsgu" path="res://Scenes/low_grav.tscn" id="6_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://olebr2tac77e" path="res://Scenes/hazard.tscn" id="7_344ge"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
-size = Vector2(96, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_21xkr"]
-size = Vector2(48, 72)
+[ext_resource type="PackedScene" uid="uid://dkcdvyo0iltr4" path="res://Scenes/level_exit.tscn" id="8_6iyac"]
+[ext_resource type="PackedScene" uid="uid://vwadjkrabsvi" path="res://Scenes/HUD.tscn" id="9_ynf5e"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6bp64")
 
-[node name="Player" parent="." instance=ExtResource("2_jjvhh")]
-z_index = 1
-position = Vector2(110, 426)
-
-[node name="Map" type="StaticBody2D" parent="."]
+[node name="Map" parent="." instance=ExtResource("3_344ge")]
 position = Vector2(0, 192.275)
-scale = Vector2(2.405, 2.405)
-script = ExtResource("3_8gbba")
 
-[node name="Collider" type="CollisionPolygon2D" parent="Map"]
-position = Vector2(0, -0.114343)
-polygon = PackedVector2Array(0, -79.8337, 16.632, -79.8337, 16.632, 83.1601, 26.6112, 83.1601, 43.2432, 89.8129, 16.632, 89.8129, 16.632, 103.118, 49.896, 103.118, 79.8337, 119.751, 103.119, 119.751, 119.751, 106.445, 136.383, 106.445, 146.362, 113.098, 146.362, 126.403, 136.383, 126.403, 136.383, 143.035, 159.667, 143.035, 159.667, 126.403, 192.931, 113.098, 192.931, 123.077, 219.543, 123.077, 246.154, 103.118, 272.765, 103.118, 272.765, 126.403, 296.05, 126.403, 296.05, -79.8337, 322.661, -79.8337, 322.661, 182.952, 0, 182.952)
-
-[node name="Poly" type="Polygon2D" parent="Map"]
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(256, 384)
-script = ExtResource("3_jjvhh")
-
-[node name="Collider" type="CollisionPolygon2D" parent="AnimatableBody2D"]
-polygon = PackedVector2Array(0, 0, 64, 0, 64, 16, 0, 16)
-
-[node name="Poly" type="Polygon2D" parent="AnimatableBody2D"]
-
-[node name="Treadmill" type="StaticBody2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+[node name="Treadmill" parent="." instance=ExtResource("5_hptm8")]
 position = Vector2(352, 320)
-scale = Vector2(2.34, 1)
-script = ExtResource("4_jjvhh")
-speed = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Treadmill"]
-shape = SubResource("RectangleShape2D_kry3j")
-
-[node name="Polygon2D" type="Polygon2D" parent="Treadmill"]
-polygon = PackedVector2Array(-48, -8, 48, -8, 48, 8, -48, 8)
-
-[node name="Low Grav" type="Area2D" parent="."]
+[node name="Low Grav" parent="." instance=ExtResource("6_d1ilt")]
 position = Vector2(496, 448)
-gravity_space_override = 3
-linear_damp = 0.975
-script = ExtResource("5_kry3j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Low Grav"]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_21xkr")
-
-[node name="Polygon2D" type="Polygon2D" parent="Low Grav"]
-modulate = Color(0.537255, 1, 1, 0.231373)
-polygon = PackedVector2Array(-24, 32, 24, 32, 24, -40, -24, -40)
 
 [node name="Hazard" parent="." instance=ExtResource("7_344ge")]
 modulate = Color(1, 0, 0, 0.313726)
@@ -78,6 +30,13 @@ modulate = Color(1, 0, 0, 0.313726)
 position = Vector2(968, 32)
 scale = Vector2(12, 1)
 
-[connection signal="body_entered" from="Low Grav" to="Low Grav" method="_on_body_entered"]
+[node name="LevelExit" parent="." instance=ExtResource("8_6iyac")]
+modulate = Color(0, 1, 0, 0.541176)
+position = Vector2(684, 468)
+scale = Vector2(1.72, 1.72)
+
+[node name="Hud" parent="." instance=ExtResource("9_ynf5e")]
+
 [connection signal="reset" from="Hazard" to="." method="_on_hazard_reset"]
 [connection signal="reset" from="Hazard2" to="." method="_on_hazard_reset"]
+[connection signal="win" from="LevelExit" to="." method="_on_level_exit_win"]

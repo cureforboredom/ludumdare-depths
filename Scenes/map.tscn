@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bda876ky035x5"]
+
+[ext_resource type="Script" uid="uid://dg0p1o34i2h5d" path="res://Scripts/map.gd" id="1_ci6au"]
+
+[node name="Map" type="StaticBody2D"]
+scale = Vector2(2.405, 2.405)
+script = ExtResource("1_ci6au")
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -0.114343)
+polygon = PackedVector2Array(0, -79.8337, 16.632, -79.8337, 16.632, 83.1601, 26.6112, 83.1601, 43.2432, 89.8129, 16.632, 89.8129, 16.632, 103.118, 49.896, 103.118, 79.8337, 119.751, 103.119, 119.751, 119.751, 106.445, 136.383, 106.445, 146.362, 113.098, 146.362, 126.403, 136.383, 126.403, 136.383, 143.035, 159.667, 143.035, 159.667, 126.403, 192.931, 113.098, 192.931, 123.077, 219.543, 123.077, 246.154, 103.118, 272.765, 103.118, 272.765, 126.403, 296.05, 126.403, 296.05, -79.8337, 322.661, -79.8337, 322.661, 182.952, 0, 182.952)
+
+[node name="Poly" type="Polygon2D" parent="."]

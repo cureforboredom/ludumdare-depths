@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ja4g7caa788"]
+
+[ext_resource type="Script" uid="uid://tdmoqbqpwmtb" path="res://Scripts/treadmill.gd" id="1_sn4eh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(96, 16)
+
+[node name="Treadmill" type="StaticBody2D"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(2.34, 1)
+script = ExtResource("1_sn4eh")
+speed = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kry3j")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-48, -8, 48, -8, 48, 8, -48, 8)

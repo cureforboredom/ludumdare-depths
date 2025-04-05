@@ -1,3 +1,5 @@
+class_name Treadmill
+
 extends StaticBody2D
 
 @export var speed = 50

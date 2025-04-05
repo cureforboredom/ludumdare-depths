@@ -16,6 +16,7 @@ var wall_timer = 0
 var wall_jump_x = 0
 var coyote_timer = 0
 var slip = 0.0
+var momentum = 0
 
 @onready var RLO: RayCast2D = $RayLeftOuter
 @onready var RLI: RayCast2D = $RayLeftInner
@@ -23,9 +24,10 @@ var slip = 0.0
 @onready var RRI: RayCast2D = $RayRightInner
 @onready var RLW: RayCast2D = $RayLeftWall
 @onready var RRW: RayCast2D = $RayRightWall
+@onready var RLF: RayCast2D = $RayLeftFloor
+@onready var RRF: RayCast2D = $RayRightFloor
 
 func _physics_process(delta: float) -> void:
-  # Add the gravity.
   if not is_on_floor():
       if velocity.y < 0:
         velocity += get_gravity() * delta
@@ -34,6 +36,16 @@ func _physics_process(delta: float) -> void:
           velocity += get_gravity() * delta * 2
         else:
           velocity = get_gravity() * delta * 2.5
+  else:
+    var current_floor
+    if RLF.is_colliding():
+      current_floor = RLF.get_collider()
+    elif RRF.is_colliding():
+      current_floor = RLF.get_collider()
+    
+    if current_floor is Treadmill:
+      momentum = current_floor.speed
+      print(momentum)
       
 
   # Handle jump.
