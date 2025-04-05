@@ -16,7 +16,7 @@ var wall_timer = 0
 var wall_jump_x = 0
 var coyote_timer = 0
 var slip = 0.0
-var momentum = {"speed": 0, "dir": 0, "jump": false}
+var momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
 
 @onready var RLO: RayCast2D = $RayLeftOuter
 @onready var RLI: RayCast2D = $RayLeftInner
@@ -43,10 +43,12 @@ func _physics_process(delta: float) -> void:
     elif RRF.get_collider():
       current_floor = RRF.get_collider()
       
-    if current_floor and current_floor.has_method("momentum"):
-      momentum = current_floor.momentum()
-    else:
-      momentum = {"speed": 0, "dir": 0, "jump": false}
+    if current_floor:
+      if current_floor.has_method("momentum"):
+        momentum = current_floor.momentum()
+        print(momentum)
+      else:
+        momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
 
   # Handle jump.
   if (RLW.is_colliding() or RRW.is_colliding()):
@@ -113,15 +115,15 @@ func _physics_process(delta: float) -> void:
     if direction:
       if momentum["speed"] > 0 and \
       (direction/abs(direction)) == momentum["dir"] and \
-      !momentum["jump"] or (momentum["jump"] and (velocity.y < 0)):
+      !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)):
         velocity.x = move_toward(
           velocity.x, MAX_SPEED * direction \
           + momentum["speed"] * momentum["dir"] + slip,
           ACCEL * delta
         )
-        momentum["speed"] -= 100 * delta
+        momentum["speed"] -= momentum["decel"] * delta
       else:
-        momentum["speed"] = 0
+        momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
         velocity.x = move_toward(
           velocity.x, MAX_SPEED * direction \
           + slip, ACCEL * delta

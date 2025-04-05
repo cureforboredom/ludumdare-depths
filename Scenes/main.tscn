@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wpox10kj0sic"]
+[gd_scene load_steps=10 format=3 uid="uid://wpox10kj0sic"]
 
 [ext_resource type="Script" uid="uid://b1hww18xtk5vv" path="res://Scripts/main.gd" id="1_6bp64"]
 [ext_resource type="PackedScene" uid="uid://bda876ky035x5" path="res://Scenes/map.tscn" id="3_344ge"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://clmfk82iclsgu" path="res://Scenes/low_grav.tscn" id="6_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://olebr2tac77e" path="res://Scenes/hazard.tscn" id="7_344ge"]
 [ext_resource type="PackedScene" uid="uid://dkcdvyo0iltr4" path="res://Scenes/level_exit.tscn" id="8_6iyac"]
+[ext_resource type="Script" uid="uid://brbh8au2ig72j" path="res://Scripts/platforms.gd" id="8_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://jar0bg1rutww" path="res://Scenes/moving_platform.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://vwadjkrabsvi" path="res://Scenes/HUD.tscn" id="9_ynf5e"]
 
 [node name="Main" type="Node2D"]
@@ -16,6 +18,7 @@ position = Vector2(0, 192.275)
 
 [node name="Treadmill" parent="." instance=ExtResource("5_hptm8")]
 position = Vector2(352, 320)
+speed = 75
 
 [node name="Low Grav" parent="." instance=ExtResource("6_d1ilt")]
 position = Vector2(496, 448)
@@ -36,6 +39,23 @@ position = Vector2(684, 468)
 scale = Vector2(1.72, 1.72)
 
 [node name="Hud" parent="." instance=ExtResource("9_ynf5e")]
+
+[node name="Platforms" type="Node2D" parent="."]
+script = ExtResource("8_ynf5e")
+
+[node name="MovingPlatform" parent="Platforms" instance=ExtResource("9_hptm8")]
+position = Vector2(256, 384)
+dist = Vector2(258, 0)
+
+[node name="MovingPlatform2" parent="Platforms" instance=ExtResource("9_hptm8")]
+position = Vector2(552, 280)
+dist = Vector2(0, -200.15)
+duration = 0.75
+
+[node name="MovingPlatform3" parent="Platforms" instance=ExtResource("9_hptm8")]
+position = Vector2(88, 256)
+dist = Vector2(150, -150)
+duration = 10.0
 
 [connection signal="reset" from="Hazard" to="." method="_on_hazard_reset"]
 [connection signal="reset" from="Hazard2" to="." method="_on_hazard_reset"]

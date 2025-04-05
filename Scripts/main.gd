@@ -1,12 +1,11 @@
 extends Node2D
 
 var player_instance = null
-var platform_instance = null
 var timer_started = false
 
 @onready var hud: CanvasLayer = $Hud
-@onready var platform = preload("res://Scenes/moving_platform.tscn")
 @onready var player = preload("res://Scenes/player.tscn")
+@onready var platforms = $Platforms
 
 @export var player_start = Vector2(110, 426)
 
@@ -37,13 +36,8 @@ func reset():
   player_instance = player.instantiate()
   add_child(player_instance)
   player_instance.position = player_start
-
-  if platform_instance:
-    platform_instance.kill()
-    platform_instance.queue_free()
-  platform_instance = platform.instantiate()
-  add_child(platform_instance)
-  platform_instance.position = Vector2(256, 384)
+  
+  platforms.reset()
 
   hud.stop_timer()
   hud.reset_timer()

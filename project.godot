@@ -23,6 +23,15 @@ window/size/window_width_override=720
 window/size/window_height_override=1280
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "yellow",
+"res://Releases/": "blue",
+"res://Scenes/": "green",
+"res://Scripts/": "red"
+}
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
