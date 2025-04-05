@@ -46,7 +46,6 @@ func _physics_process(delta: float) -> void:
     if current_floor:
       if current_floor.has_method("momentum"):
         momentum = current_floor.momentum()
-        print(momentum)
       else:
         momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
 
