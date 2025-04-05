@@ -1,17 +1,18 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 200.0
+const MAX_SPEED = 190.0
 const INIT_SPEED = 50.0
 const ACCEL = 800.0
 const JUMP_VELOCITY = -275.0
-const JUMP_TIME = 0.35
+const JUMP_TIME = 0.4
 const JUMP_BUFFER = 0.15
 const COYOTE_TIME = 0.15
+const WALL_TIME = 0.25
 
 var jump_timer = 0
 var jump_buffer_timer = 0
 var double_jump = true
-var wall_jump = true
+var wall_timer = 0
 var wall_jump_x = 0
 var coyote_timer = 0
 var slip = 0.0
@@ -36,6 +37,12 @@ func _physics_process(delta: float) -> void:
       
 
   # Handle jump.
+  if (RLW.is_colliding() or RRW.is_colliding()):
+    wall_timer = WALL_TIME
+  else:
+    if wall_timer > 0:
+      wall_timer -= delta
+    
   if Input.is_action_just_pressed("Jump"):
     jump_buffer_timer = JUMP_BUFFER
   elif jump_timer > 0:
@@ -61,12 +68,16 @@ func _physics_process(delta: float) -> void:
       jump_buffer_timer = 0
       jump_timer = JUMP_TIME
 
-    elif wall_jump and (RLW.is_colliding() or RRW.is_colliding()):
+    elif wall_timer > 0:
       velocity.y = JUMP_VELOCITY * 0.8
       jump_timer = JUMP_TIME
-      wall_jump_x = ((int(RLW.is_colliding()) * 1) + (int(RRW.is_colliding()) * -1)) * 150
-      wall_jump = false
+      wall_jump_x = (
+        (int(RLW.is_colliding()) * 1) \
+        + (int(RRW.is_colliding()) * -1)
+        ) * 150
+      wall_timer = 0
       jump_buffer_timer = 0
+      double_jump = true
 
     elif double_jump:
       velocity.y = JUMP_VELOCITY * 0.9
@@ -88,7 +99,10 @@ func _physics_process(delta: float) -> void:
       direction += wall_jump_x / abs(wall_jump_x) / 2
       wall_jump_x -= delta * direction * 10
     if direction:
-      velocity.x = move_toward(velocity.x, MAX_SPEED * direction + slip, ACCEL * delta)
+      velocity.x = move_toward(
+        velocity.x, MAX_SPEED * direction \
+        + slip, ACCEL * delta
+        )
     else:
       velocity.x = move_toward(velocity.x, 0 + slip, ACCEL * delta)
   
@@ -103,7 +117,6 @@ func _physics_process(delta: float) -> void:
       slip = 0
     coyote_timer = COYOTE_TIME
     double_jump = true
-    wall_jump = true
   else:
     if coyote_timer > 0:
       coyote_timer -= delta
