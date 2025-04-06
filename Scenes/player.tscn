@@ -131,7 +131,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 floor_max_angle = 1.0472
-floor_snap_length = 3.0
+floor_snap_length = 5.3
 script = ExtResource("1_kyqiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

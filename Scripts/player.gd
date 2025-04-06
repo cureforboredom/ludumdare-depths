@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 150.0
-const INIT_SPEED = 30.0
-const ACCEL = 600.0
+const MAX_SPEED = 190.0
+const INIT_SPEED = 50.0
+const ACCEL = 800.0
 const JUMP_VELOCITY = -275.0
-const JUMP_TIME = 0.3
+const JUMP_TIME = 0.4
 const JUMP_BUFFER = 0.15
 const COYOTE_TIME = 0.15
-const WALL_TIME = 0.20
+const WALL_TIME = 0.25
 
 var jump_timer = 0
 var jump_buffer_timer = 0

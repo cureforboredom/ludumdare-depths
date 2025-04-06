@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://wpox10kj0sic"]
+[gd_scene load_steps=12 format=3 uid="uid://wpox10kj0sic"]
 
 [ext_resource type="Script" uid="uid://b1hww18xtk5vv" path="res://Scripts/main.gd" id="1_6bp64"]
 [ext_resource type="PackedScene" uid="uid://bda876ky035x5" path="res://Scenes/map.tscn" id="3_344ge"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://brbh8au2ig72j" path="res://Scripts/platforms.gd" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://jar0bg1rutww" path="res://Scenes/moving_platform.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://vwadjkrabsvi" path="res://Scenes/HUD.tscn" id="9_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://c8pbbilrbtudy" path="res://Assets/background.png" id="10_6iyac"]
 [ext_resource type="PackedScene" uid="uid://b2l4rb1er6maj" path="res://Assets/Levels/testlevel.tscn" id="10_d1ilt"]
 
 [node name="Main" type="Node2D"]
@@ -64,6 +65,11 @@ duration = 2.0
 position = Vector2(88, 256)
 dist = Vector2(150, -150)
 duration = 6.0
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(760, 792)
+scale = Vector2(-0.245, -0.215)
+texture = ExtResource("10_6iyac")
 
 [node name="testlevel" parent="." instance=ExtResource("10_d1ilt")]
 position = Vector2(512, 1024)
