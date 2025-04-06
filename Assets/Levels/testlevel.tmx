@@ -3,6 +3,9 @@
  <editorsettings>
   <export target="testlevel.tscn" format="tscn"/>
  </editorsettings>
+ <properties>
+  <property name="Start" value="320,1080"/>
+ </properties>
  <tileset firstgid="1" source="tilemap.tsx"/>
  <layer id="1" name="terrain" width="30" height="20">
   <data encoding="csv">

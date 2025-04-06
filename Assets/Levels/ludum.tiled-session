@@ -29,8 +29,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 149.33333333333326,
-                "y": -86.66666666666663
+                "x": 49.33333333333337,
+                "y": -94.66666666666663
             }
         },
         "tilemap.tsx": {
@@ -38,7 +38,7 @@
             "scaleInEditor": 3.0122
         }
     },
-    "last.exportedFilePath": "/home/cure/code/ludumdare/Assets/Levels",
+    "last.exportedFilePath": "/home/cure/code/ludumdare/Scenes",
     "last.externalTilesetPath": "/home/cure/code/ludumdare/Assets/Levels",
     "last.imagePath": "/home/cure/code/ludumdare/Assets",
     "last.objectTemplatePath": "/home/cure/code/ludumdare/Assets/Levels",

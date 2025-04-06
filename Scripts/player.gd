@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const MAX_SPEED = 190.0
-const INIT_SPEED = 50.0
+const INIT_SPEED = 10.0
 const ACCEL = 800.0
 const JUMP_VELOCITY = -275.0
 const JUMP_TIME = 0.4
@@ -40,13 +40,13 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
   if not is_on_floor():
       if velocity.y < 0:
-        velocity += get_gravity() * delta
+        velocity.y += get_gravity().y * delta
       else:
         if not (RLW.is_colliding() or RRW.is_colliding()):
-          velocity += get_gravity() * delta * 1.5
+          velocity.y += get_gravity().y * delta * 1.5
           falling = true
         else:
-          velocity = get_gravity() * delta * 2.5
+          velocity.y += get_gravity().y * delta * 0.4
   else:
     var current_floor
     if RLF.get_collider():
@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
         (direction/abs(direction)) == momentum["dir"] and \
         !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)):
           velocity.x = move_toward(
-            velocity.x, MAX_SPEED * direction * (jump_timer + 1.2) \
+            velocity.x, MAX_SPEED * direction * (int(jump_timer > 0) * 1.5) \
             + momentum["speed"] * momentum["dir"] + slip,
             ACCEL * delta
           )
@@ -136,7 +136,7 @@ func _physics_process(delta: float) -> void:
         else:
           momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
           velocity.x = move_toward(
-            velocity.x, MAX_SPEED * direction * (jump_timer + 1.2) \
+            velocity.x, MAX_SPEED * direction * (int(jump_timer > 0) * 0.5 + 1) \
             + slip, ACCEL * delta
             )
       else:
@@ -165,11 +165,10 @@ func _physics_process(delta: float) -> void:
   if falling and is_on_floor():
     falling = false
     animplayer.play("Landing")
-  if !is_on_floor():
-    if velocity.y < 0:
-      animplayer.play("Jump up")
-    if velocity.y > 0:
-      animplayer.play("Jump down")
+  if velocity.y < 0:
+    animplayer.play("Jump up")
+  if velocity.y > 0:
+    animplayer.play("Jump down")
     
   if !animplayer.is_playing():
     animplayer.play("Idle")

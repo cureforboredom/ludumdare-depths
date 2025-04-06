@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn5ypk4208maq"]
+[gd_scene load_steps=4 format=3 uid="uid://ir33tkukr3sm"]
 
 [ext_resource type="Texture2D" uid="uid://c7hgunfrfy5pu" path="res://Assets/Levels/tilemap.png" id="tilemap"]
 
@@ -339,6 +339,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0")
 
 [node name="testlevel" type="Node2D"]
+metadata/start = Vector2(320, 1080)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0")

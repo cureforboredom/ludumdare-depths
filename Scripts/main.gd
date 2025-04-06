@@ -7,7 +7,9 @@ var input_timer
 @onready var hud: CanvasLayer = $Hud
 @onready var player = preload("res://Scenes/player.tscn")
 @onready var platforms = $Platforms
-@export var player_start = Vector2(320, 1080)
+
+####### CHANGE ME
+@export var level : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +41,7 @@ func reset():
     player_instance.queue_free()
   player_instance = player.instantiate()
   self.call_deferred("add_child", player_instance)
-  player_instance.set_deferred("position", player_start)
+  player_instance.set_deferred("position", level.get_meta("start"))
   player_instance.set_deferred("accept_input", false)
   
   platforms.reset()
