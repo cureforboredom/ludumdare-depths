@@ -6,6 +6,8 @@
 size = Vector2(32, 32)
 
 [node name="LevelExit" type="Area2D"]
+modulate = Color(0, 1, 0, 0.113725)
+z_index = 3
 script = ExtResource("1_rpjwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

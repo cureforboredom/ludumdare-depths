@@ -130,6 +130,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
 floor_max_angle = 1.0472
 floor_snap_length = 5.3
 script = ExtResource("1_kyqiw")

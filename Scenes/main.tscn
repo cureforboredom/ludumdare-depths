@@ -1,50 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://wpox10kj0sic"]
+[gd_scene load_steps=9 format=3 uid="uid://wpox10kj0sic"]
 
 [ext_resource type="Script" uid="uid://b1hww18xtk5vv" path="res://Scripts/main.gd" id="1_6bp64"]
-[ext_resource type="PackedScene" uid="uid://bda876ky035x5" path="res://Scenes/map.tscn" id="3_344ge"]
-[ext_resource type="PackedScene" uid="uid://c0ja4g7caa788" path="res://Scenes/treadmill.tscn" id="5_hptm8"]
-[ext_resource type="PackedScene" uid="uid://clmfk82iclsgu" path="res://Scenes/low_grav.tscn" id="6_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://olebr2tac77e" path="res://Scenes/hazard.tscn" id="7_344ge"]
 [ext_resource type="PackedScene" uid="uid://dkcdvyo0iltr4" path="res://Scenes/level_exit.tscn" id="8_6iyac"]
 [ext_resource type="Script" uid="uid://brbh8au2ig72j" path="res://Scripts/platforms.gd" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://jar0bg1rutww" path="res://Scenes/moving_platform.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://vwadjkrabsvi" path="res://Scenes/HUD.tscn" id="9_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://c8pbbilrbtudy" path="res://Assets/background.png" id="10_6iyac"]
-[ext_resource type="PackedScene" uid="uid://b2l4rb1er6maj" path="res://Assets/Levels/testlevel.tscn" id="10_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://cn5ypk4208maq" path="res://Assets/Levels/testlevel.tscn" id="10_d1ilt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6bp64")
-
-[node name="Map" parent="." instance=ExtResource("3_344ge")]
-visible = false
-position = Vector2(0, 192.275)
-
-[node name="Treadmill" parent="." instance=ExtResource("5_hptm8")]
-visible = false
-position = Vector2(352, 320)
-speed = 60
-
-[node name="Low Grav" parent="." instance=ExtResource("6_d1ilt")]
-visible = false
-position = Vector2(496, 448)
-
-[node name="Hazard" parent="." instance=ExtResource("7_344ge")]
-visible = false
-modulate = Color(1, 0, 0, 0.313726)
-position = Vector2(-192, 32)
-scale = Vector2(12, 1)
-
-[node name="Hazard2" parent="." instance=ExtResource("7_344ge")]
-visible = false
-modulate = Color(1, 0, 0, 0.313726)
-position = Vector2(968, 32)
-scale = Vector2(12, 1)
-
-[node name="LevelExit" parent="." instance=ExtResource("8_6iyac")]
-visible = false
-modulate = Color(0, 1, 0, 0.541176)
-position = Vector2(684, 468)
-scale = Vector2(1.72, 1.72)
 
 [node name="Hud" parent="." instance=ExtResource("9_ynf5e")]
 
@@ -71,9 +37,25 @@ position = Vector2(760, 792)
 scale = Vector2(-0.245, -0.215)
 texture = ExtResource("10_6iyac")
 
+[node name="LevelExit" parent="." instance=ExtResource("8_6iyac")]
+z_index = 1
+position = Vector2(1200, 448)
+scale = Vector2(2.40794, 4.263)
+
 [node name="testlevel" parent="." instance=ExtResource("10_d1ilt")]
+z_index = 1
 position = Vector2(512, 1024)
 
-[connection signal="reset" from="Hazard" to="." method="_on_hazard_reset"]
-[connection signal="reset" from="Hazard2" to="." method="_on_hazard_reset"]
+[node name="Hazard2" parent="." instance=ExtResource("7_344ge")]
+position = Vector2(944, 880)
+scale = Vector2(3.88001, 1.92)
+
+[node name="Hazard" parent="." instance=ExtResource("7_344ge")]
+position = Vector2(768, 1216)
+scale = Vector2(11.7746, 4.77444)
+
+[node name="Hazard3" parent="." instance=ExtResource("7_344ge")]
+position = Vector2(808, 600)
+scale = Vector2(1.48001, 4.72)
+
 [connection signal="win" from="LevelExit" to="." method="_on_level_exit_win"]

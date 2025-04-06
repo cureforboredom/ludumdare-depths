@@ -9,6 +9,9 @@ const JUMP_BUFFER = 0.15
 const COYOTE_TIME = 0.15
 const WALL_TIME = 0.25
 
+var accept_input = true
+
+var direction
 var jump_timer = 0
 var jump_buffer_timer = 0
 var double_jump = true
@@ -31,7 +34,7 @@ var falling = false
 @onready var sprite = $Sprite2D
 @onready var animplayer = $AnimationPlayer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
   pass
   
 func _physics_process(delta: float) -> void:
@@ -64,10 +67,10 @@ func _physics_process(delta: float) -> void:
     if wall_timer > 0:
       wall_timer -= delta
     
-  if Input.is_action_just_pressed("Jump"):
+  if Input.is_action_just_pressed("Jump") and accept_input:
     jump_buffer_timer = JUMP_BUFFER
   elif jump_timer > 0:
-    if Input.is_action_pressed("Jump"):
+    if Input.is_action_pressed("Jump") and accept_input:
       velocity.y += JUMP_VELOCITY / 25
       jump_timer -= delta
     else:
@@ -110,33 +113,34 @@ func _physics_process(delta: float) -> void:
       jump_buffer_timer -= delta
       
 
-  if Input.is_action_just_pressed("Left"):
+  if Input.is_action_just_pressed("Left") and accept_input:
     velocity.x = INIT_SPEED * -1
-  elif Input.is_action_just_pressed("Right"):
+  elif Input.is_action_just_pressed("Right") and accept_input:
     velocity.x = INIT_SPEED
   else:
-    var direction = Input.get_axis("Left", "Right")
-    if wall_jump_x != 0:
-      direction += wall_jump_x / abs(wall_jump_x) / 2
-      wall_jump_x -= delta * direction * 10
-    if direction:
-      if momentum["speed"] > 0 and \
-      (direction/abs(direction)) == momentum["dir"] and \
-      !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)):
-        velocity.x = move_toward(
-          velocity.x, MAX_SPEED * direction \
-          + momentum["speed"] * momentum["dir"] + slip,
-          ACCEL * delta
-        )
-        momentum["speed"] -= momentum["decel"] * delta
-      else:
-        momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
-        velocity.x = move_toward(
-          velocity.x, MAX_SPEED * direction \
-          + slip, ACCEL * delta
+    if accept_input:
+      direction = Input.get_axis("Left", "Right")
+      if wall_jump_x != 0:
+        direction += wall_jump_x / abs(wall_jump_x) / 2
+        wall_jump_x -= delta * direction * 10
+      if direction:
+        if momentum["speed"] > 0 and \
+        (direction/abs(direction)) == momentum["dir"] and \
+        !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)):
+          velocity.x = move_toward(
+            velocity.x, MAX_SPEED * direction * (jump_timer + 1) \
+            + momentum["speed"] * momentum["dir"] + slip,
+            ACCEL * delta
           )
-    else:
-      velocity.x = move_toward(velocity.x, 0 + slip, ACCEL * delta)
+          momentum["speed"] -= momentum["decel"] * delta
+        else:
+          momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
+          velocity.x = move_toward(
+            velocity.x, MAX_SPEED * direction * (jump_timer + 1) \
+            + slip, ACCEL * delta
+            )
+      else:
+        velocity.x = move_toward(velocity.x, 0 + slip, ACCEL * delta)
   
   if wall_jump_x != 0:
     velocity.x = wall_jump_x
@@ -153,10 +157,11 @@ func _physics_process(delta: float) -> void:
     if coyote_timer > 0:
       coyote_timer -= delta
 
-  var direction = Input.get_axis("Left", "Right")
-  if direction:
-    animplayer.play("Run")
-    sprite.flip_h = direction < 0
+  if accept_input:
+    direction = Input.get_axis("Left", "Right")
+    if direction:
+      animplayer.play("Run")
+      sprite.flip_h = direction < 0
   if falling and is_on_floor():
     falling = false
     animplayer.play("Landing")
