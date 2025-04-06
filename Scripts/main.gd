@@ -7,7 +7,7 @@ var timer_started = false
 @onready var player = preload("res://Scenes/player.tscn")
 @onready var platforms = $Platforms
 
-@export var player_start = Vector2(110, 426)
+@export var player_start = Vector2(320, 1080)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
