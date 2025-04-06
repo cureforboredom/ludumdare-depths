@@ -58,4 +58,9 @@ scale = Vector2(11.7746, 4.77444)
 position = Vector2(808, 600)
 scale = Vector2(1.48001, 4.72)
 
+[node name="Hazard4" parent="." instance=ExtResource("7_344ge")]
+position = Vector2(944, 752)
+rotation = -0.78631
+scale = Vector2(0.650063, 5.16312)
+
 [connection signal="win" from="LevelExit" to="." method="_on_level_exit_win"]

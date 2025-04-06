@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
         (direction/abs(direction)) == momentum["dir"] and \
         !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)):
           velocity.x = move_toward(
-            velocity.x, MAX_SPEED * direction * (jump_timer + 1) \
+            velocity.x, MAX_SPEED * direction * (jump_timer + 1.2) \
             + momentum["speed"] * momentum["dir"] + slip,
             ACCEL * delta
           )
@@ -136,7 +136,7 @@ func _physics_process(delta: float) -> void:
         else:
           momentum = {"speed": 0, "dir": 0, "jump": false, "decel": 0}
           velocity.x = move_toward(
-            velocity.x, MAX_SPEED * direction * (jump_timer + 1) \
+            velocity.x, MAX_SPEED * direction * (jump_timer + 1.2) \
             + slip, ACCEL * delta
             )
       else:
