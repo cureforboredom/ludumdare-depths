@@ -36,14 +36,15 @@ var falling = false
 @onready var camera = $Camera2D
 
 func zoom_camera(zoom):
-  var tween = get_tree().create_tween()
-  tween.tween_property(
-    camera, "zoom", zoom, 1.5
-    ).set_ease(
-      Tween.EASE_IN
-    ).set_trans(
-      Tween.TRANS_SINE
-    )
+  if get_tree():
+    var tween = get_tree().create_tween()
+    tween.tween_property(
+      camera, "zoom", zoom, 1.2
+      ).set_ease(
+        Tween.EASE_IN
+      ).set_trans(
+        Tween.TRANS_SINE
+      )
   
   
 func _physics_process(delta: float) -> void:
