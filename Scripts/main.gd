@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
   if Input.is_action_just_pressed("Reset"):
     reset()
   if Input.is_action_just_pressed("Pause"):
-    die()
+    pause()
   if player_instance:
     if !paused:
       player_instance.paused = false
@@ -83,4 +83,11 @@ func die():
   paused = true
   hud.stop_timer()
   hud.display("die")
+  player_instance.accept_input = false
+  
+func pause():
+  paused = true
+  hud.stop_timer()
+  hud.reset_timer()
+  hud.display("play")
   player_instance.accept_input = false

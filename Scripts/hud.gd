@@ -4,6 +4,7 @@ signal reset
 
 @onready var timer_label = $Timer
 @onready var menu = $Menu
+@onready var black = $Black
 
 var medal_ui
 var medal_placeholder
@@ -46,12 +47,18 @@ func update_timer_label():
   timer_label.text = "%02d:%05.2f" % [minutes, seconds]
   
 func display(state):
-  menu.visible = true
-
   match state:
     "none":
       menu.visible = false
     "win":
+      menu.visible = true
+      black.visible = true
+      black.color = Color(Color.BLACK, 1.0)
+      var tween = get_tree().create_tween()
+      tween.tween_property(
+        black, "color", Color(Color.BLACK, 0.0), 1.5
+      )
+      tween.set_ease(Tween.EASE_IN)
       if timer <= 28.0:
         medal = "Gold"
       elif timer <= 32.0 and medal != "Gold":
@@ -63,7 +70,20 @@ func display(state):
         medal_ui.change(medal)
         medal_placeholder.visible = false
         medal_ui.visible = true
+      await tween.finished
+      black.visible = false
     "die":
-      pass
+      black.visible = true
+      var tween = get_tree().create_tween()
+      tween.tween_property(
+        black, "color", Color(Color.BLACK, 1.0), 0.4
+      ).set_ease(Tween.EASE_IN)
+      tween.tween_property(
+        black, "color", Color(Color.BLACK, 0.0), 0.3
+            ).set_ease(Tween.EASE_OUT)
+      await get_tree().create_timer(0.35).timeout
+      reset.emit()
+      await tween.finished
+      black.visible = false
     "play":
-      pass
+      menu.visible = true
