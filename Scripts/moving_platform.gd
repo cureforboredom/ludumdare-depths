@@ -10,9 +10,19 @@ var tween
 
 @export var dist : Vector2 = Vector2(100, 0)
 @export var duration : float = 5.0
+@export var use_trigger : bool = false
 
 func _ready() -> void:
   poly.polygon = collider.polygon
+  
+func move(node):
+  position = node[0]
+  dist = node[1]
+  duration = node[2]
+  use_trigger = node[3]
+  
+  tween = get_tree().create_tween()
+  tween.tween_property($AnimBody, "position", Vector2(0,0), 0)
   
 func setup():
   var speed = dist.x / duration

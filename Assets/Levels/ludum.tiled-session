@@ -34,11 +34,11 @@
             }
         },
         "testlevel.tmx": {
-            "scale": 0.75,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 222,
-                "y": -202.66666666666663
+                "x": 109.09090909090901,
+                "y": -578.7878787878788
             }
         },
         "tilemap.tsx": {
@@ -59,8 +59,8 @@
     ],
     "project": "ludum.tiled-project",
     "recentFiles": [
-        "1.tmx",
         "testlevel.tmx",
+        "1.tmx",
         "tilemap.tsx",
         "background.tsx",
         "rules.tmx",

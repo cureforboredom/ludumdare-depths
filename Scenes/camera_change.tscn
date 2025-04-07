@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://12r4xh7x85x7"]
+
+[ext_resource type="Script" uid="uid://ht0ctjnenh4p" path="res://Scripts/camera_change.gd" id="1_o2687"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q866e"]
+
+[node name="CameraChange" type="Node2D"]
+modulate = Color(1, 0.0901961, 0.14902, 1)
+script = ExtResource("1_o2687")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_q866e")
+debug_color = Color(0, 0.6, 0.701961, 0.396078)

@@ -33,9 +33,18 @@ var falling = false
 
 @onready var sprite = $Sprite2D
 @onready var animplayer = $AnimationPlayer
+@onready var camera = $Camera2D
 
-func _process(_delta: float) -> void:
-  pass
+func zoom_camera(zoom):
+  var tween = get_tree().create_tween()
+  tween.tween_property(
+    camera, "zoom", zoom, 1.5
+    ).set_ease(
+      Tween.EASE_IN
+    ).set_trans(
+      Tween.TRANS_SINE
+    )
+  
   
 func _physics_process(delta: float) -> void:
   if not is_on_floor():
@@ -131,7 +140,7 @@ func _physics_process(delta: float) -> void:
           !momentum["jump"] or (momentum["jump"] and (jump_timer > 0)
           ):
             # apply momentum and lower it
-            added_speed += momentum["speed"] * momentum["dir"]
+            added_speed += momentum["speed"]
             momentum["speed"] -= momentum["decel"] * delta
           else:
             momentum = {

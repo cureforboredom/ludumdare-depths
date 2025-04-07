@@ -3,10 +3,10 @@ extends Node2D
 var player_instance = null
 var timer_started = false
 var input_timer
+var platforms
 
 @onready var hud: CanvasLayer = $Hud
 @onready var player = preload("res://Scenes/player.tscn")
-@onready var platforms = $Platforms
 
 ####### CHANGE ME
 @export var level : Node2D
@@ -29,11 +29,23 @@ func _process(_delta: float) -> void:
       hud.start_timer()
       timer_started = true
 
+func _platforms(node):
+  platforms = node
+  
+func _start_platforms(body):
+  if body is CharacterBody2D:
+    platforms.start()
+    platforms.remove_trigger()
+
 func _on_hazard_reset():
   reset()
   
 func _on_level_exit_win():
   win()
+  
+func _camera_change(body, zoom):
+  if body is CharacterBody2D:
+    player_instance.zoom_camera(zoom)
   
 func reset():
   input_timer = get_tree().create_timer(0.55)
