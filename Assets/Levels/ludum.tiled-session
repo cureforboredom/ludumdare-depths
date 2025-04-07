@@ -3,18 +3,18 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "testlevel.tmx",
+    "activeFile": "1.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "1.tmx": {
-            "scale": 2,
+            "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 360.75,
-                "y": 123
+                "x": -407.3333333333333,
+                "y": -1455.6666666666665
             }
         },
         "background.tsx": {
@@ -42,7 +42,7 @@
             }
         },
         "tilemap.tsx": {
-            "scaleInDock": 4,
+            "scaleInDock": 1.5,
             "scaleInEditor": 3.0122
         }
     },
@@ -55,12 +55,12 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "testlevel.tmx"
+        "1.tmx"
     ],
     "project": "ludum.tiled-project",
     "recentFiles": [
-        "testlevel.tmx",
         "1.tmx",
+        "testlevel.tmx",
         "tilemap.tsx",
         "background.tsx",
         "rules.tmx",

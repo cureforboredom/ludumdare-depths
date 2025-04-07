@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://wpox10kj0sic"]
 
 [ext_resource type="Script" uid="uid://b1hww18xtk5vv" path="res://Scripts/main.gd" id="1_6bp64"]
-[ext_resource type="PackedScene" path="res://Scenes/1.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" path="res://Scenes/level.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://olebr2tac77e" path="res://Scenes/hazard.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://c0ja4g7caa788" path="res://Scenes/treadmill.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://clmfk82iclsgu" path="res://Scenes/low_grav.tscn" id="9_d1ilt"]
@@ -16,153 +16,153 @@
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("level")]
 script = ExtResource("1_6bp64")
-level = NodePath("1")
+level = NodePath("Level")
 
 [node name="Hud" parent="." instance=ExtResource("9_ynf5e")]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(1184, 240)
+position = Vector2(-235.52, -598.656)
 scale = Vector2(-0.885, -0.778)
 texture = ExtResource("10_6iyac")
 
-[node name="1" parent="." instance=ExtResource("6_21xkr")]
-position = Vector2(1328, 1000)
-metadata/start = Vector2(1573.17, 1018.89)
+[node name="Level" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(-91.52, 161.344)
+metadata/start = Vector2(157.308, 166.207)
 
-[node name="Hazard" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(424, -192)
 scale = Vector2(5.46779, 0.526669)
 
-[node name="Hazard2" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard2" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(392, -352)
 scale = Vector2(-2.05946, 2.38368)
 
-[node name="Hazard3" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard3" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(549.032, 35.5223)
 scale = Vector2(1.55557, 2.48248)
 
-[node name="Treadmill" parent="1" instance=ExtResource("8_344ge")]
+[node name="Treadmill" parent="Level" instance=ExtResource("8_344ge")]
 position = Vector2(384, 200)
 
-[node name="Low Grav" parent="1" instance=ExtResource("9_d1ilt")]
+[node name="Low Grav" parent="Level" instance=ExtResource("9_d1ilt")]
 position = Vector2(408, -216)
 scale = Vector2(1.75648, 0.382672)
 
-[node name="Low Grav2" parent="1" instance=ExtResource("9_d1ilt")]
+[node name="Low Grav2" parent="Level" instance=ExtResource("9_d1ilt")]
 position = Vector2(680, -328)
 
-[node name="Hazard4" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard4" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-152, 480)
 scale = Vector2(162.8, -4.64811)
 
-[node name="Treadmill2" parent="1" instance=ExtResource("8_344ge")]
+[node name="Treadmill2" parent="Level" instance=ExtResource("8_344ge")]
 position = Vector2(536, -424)
 scale = Vector2(1.66002, 1)
 dir = -1
 
-[node name="Hazard5" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard5" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(312, -440)
 scale = Vector2(7.02789, 0.475535)
 
-[node name="CameraChange" parent="1" instance=ExtResource("10_hptm8")]
+[node name="CameraChange" parent="Level" instance=ExtResource("10_hptm8")]
 position = Vector2(584, -552)
 scale = Vector2(-0.596283, 11.5962)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Treadmill3" parent="1" instance=ExtResource("8_344ge")]
+[node name="Treadmill3" parent="Level" instance=ExtResource("8_344ge")]
 position = Vector2(-288, 24)
 scale = Vector2(3.99277, 0.997697)
 speed = 130
 dir = -1
 
-[node name="Platforms" parent="1" instance=ExtResource("9_hptm8")]
+[node name="Platforms" parent="Level" instance=ExtResource("9_hptm8")]
 
-[node name="MovingPlatform4" parent="1/Platforms" instance=ExtResource("10_d1ilt")]
+[node name="MovingPlatform4" parent="Level/Platforms" instance=ExtResource("10_d1ilt")]
 position = Vector2(-672, -40)
 scale = Vector2(1.5, 1)
 dist = Vector2(0, -200)
 duration = 1.3
 use_trigger = true
 
-[node name="MovingPlatform5" parent="1/Platforms" instance=ExtResource("10_d1ilt")]
+[node name="MovingPlatform5" parent="Level/Platforms" instance=ExtResource("10_d1ilt")]
 position = Vector2(-856, -464)
 scale = Vector2(1.5, 1)
 dist = Vector2(0, 200)
 duration = 1.3
 use_trigger = true
 
-[node name="MovingPlatform6" parent="1/Platforms" instance=ExtResource("10_d1ilt")]
+[node name="MovingPlatform6" parent="Level/Platforms" instance=ExtResource("10_d1ilt")]
 position = Vector2(-624, -536)
 scale = Vector2(1.5, 1)
 dist = Vector2(0, -230)
 duration = 1.35
 use_trigger = true
 
-[node name="Area2D" type="Area2D" parent="1/Platforms"]
+[node name="Area2D" type="Area2D" parent="Level/Platforms"]
 position = Vector2(-464, -128)
 scale = Vector2(0.996734, 13.5902)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="1/Platforms/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Platforms/Area2D"]
 position = Vector2(-96.3146, 5.00222e-12)
 shape = SubResource("RectangleShape2D_hptm8")
 
-[node name="Hazard6" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard6" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-904, -376)
 scale = Vector2(-1.17517, 26.9597)
 
-[node name="Hazard7" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard7" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-688, -1296)
 scale = Vector2(4.99484, 1.51547)
 
-[node name="Hazard8" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard8" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-688, -1504)
 scale = Vector2(3.66074, 3.70451)
 
-[node name="Low Grav3" parent="1" instance=ExtResource("9_d1ilt")]
+[node name="Low Grav3" parent="Level" instance=ExtResource("9_d1ilt")]
 position = Vector2(-1016, -1312)
 scale = Vector2(1.82268, -7.69671)
 
-[node name="CameraChange2" parent="1" instance=ExtResource("10_hptm8")]
+[node name="CameraChange2" parent="Level" instance=ExtResource("10_hptm8")]
 position = Vector2(-1016, -992)
 scale = Vector2(3.50004, 0.638917)
 
-[node name="LevelExit" parent="1" instance=ExtResource("11_d1ilt")]
+[node name="LevelExit" parent="Level" instance=ExtResource("11_d1ilt")]
 position = Vector2(840, -336)
 scale = Vector2(3.05584, 4.34857)
 
-[node name="Hazard9" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard9" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-432, -1496)
 scale = Vector2(0.77354, 1.73416)
 
-[node name="Hazard10" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard10" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-432, -1632)
 scale = Vector2(7.77113, 2.01343)
 
-[node name="Hazard11" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard11" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(-168, -1304)
 scale = Vector2(11.2087, 2.08285)
 
-[node name="Treadmill4" parent="1" instance=ExtResource("8_344ge")]
+[node name="Treadmill4" parent="Level" instance=ExtResource("8_344ge")]
 position = Vector2(96, -1336)
 scale = Vector2(1.66002, 1)
 
-[node name="CameraChange4" parent="1" instance=ExtResource("10_hptm8")]
+[node name="CameraChange4" parent="Level" instance=ExtResource("10_hptm8")]
 position = Vector2(48, -1440)
 scale = Vector2(3.07822, 10.4194)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Hazard12" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard12" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(752, -624)
 scale = Vector2(0.8, 21.12)
 
-[node name="Hazard13" parent="1" instance=ExtResource("7_6bp64")]
+[node name="Hazard13" parent="Level" instance=ExtResource("7_6bp64")]
 position = Vector2(928, -624)
 scale = Vector2(0.8, 21.16)
 
-[node name="Low Grav4" parent="1" instance=ExtResource("9_d1ilt")]
+[node name="Low Grav4" parent="Level" instance=ExtResource("9_d1ilt")]
 position = Vector2(536, -1040)
 scale = Vector2(4.66853, 2.40217)
 
-[node name="CameraChange5" parent="1" instance=ExtResource("10_hptm8")]
+[node name="CameraChange5" parent="Level" instance=ExtResource("10_hptm8")]
 position = Vector2(841.93, -958.799)
 scale = Vector2(6.24002, 1)

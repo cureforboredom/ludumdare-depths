@@ -1,12 +1,138 @@
-[gd_scene load_steps=3 format=3 uid="uid://vwadjkrabsvi"]
+[gd_scene load_steps=15 format=3 uid="uid://vwadjkrabsvi"]
 
 [ext_resource type="Script" uid="uid://cekpr2cvq524p" path="res://Scripts/hud.gd" id="1_sd512"]
+[ext_resource type="Texture2D" uid="uid://n5c33yta1crb" path="res://Assets/medals/bronze.png" id="2_g8s2e"]
+[ext_resource type="Script" uid="uid://v2ei07vpaq85" path="res://Scripts/medal.gd" id="2_jo1ms"]
+[ext_resource type="LabelSettings" uid="uid://bhtku0d00tbyt" path="res://Assets/HUD.tres" id="3_psnte"]
+[ext_resource type="Texture2D" uid="uid://cttpq1g2dg0wm" path="res://Assets/medals/silver.png" id="3_t385i"]
+[ext_resource type="Texture2D" uid="uid://634v72ky8031" path="res://Assets/medals/gold.png" id="4_nfm57"]
+[ext_resource type="LabelSettings" uid="uid://dmaxvanu2f1tp" path="res://Assets/Shadow.tres" id="6_b5b84"]
+[ext_resource type="FontFile" uid="uid://c1ou0qbqo4cfn" path="res://Assets/m6x11plus.ttf" id="7_t385i"]
+[ext_resource type="Script" uid="uid://deo2ongfjt1jl" path="res://Scripts/medal_placeholder.gd" id="8_fbb48"]
+[ext_resource type="Script" uid="uid://rhqkosdroo07" path="res://Scripts/button.gd" id="8_o2vyp"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_jo1ms"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5b84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g8s2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t385i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nfm57")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfm57"]
+line_spacing = 0.0
+font_size = 21
+shadow_color = Color(0.976471, 0, 0.415686, 0.184314)
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o2vyp"]
 font_size = 24
+shadow_color = Color(0.974707, 0, 0.41436, 0.184314)
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5b84"]
+line_spacing = 2.0
+font_size = 18
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_sd512")
+
+[node name="Menu" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 320.0
+color = Color(0.0904492, 0.119714, 0.168674, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="Menu"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 41.0
+offset_right = 260.0
+offset_bottom = 297.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="Menu/PanelContainer"]
+custom_minimum_size = Vector2(0, 94)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0, 0, 0, 1)
+
+[node name="Medal" type="AnimatedSprite2D" parent="Menu/PanelContainer"]
+visible = false
+position = Vector2(101, 138)
+sprite_frames = SubResource("SpriteFrames_b5b84")
+script = ExtResource("2_jo1ms")
+
+[node name="Label" type="Label" parent="Menu/PanelContainer/Medal"]
+offset_left = -31.0
+offset_top = -45.0
+offset_right = 32.0
+offset_bottom = -10.0
+text = "Gold"
+label_settings = ExtResource("6_b5b84")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Menu/PanelContainer/Medal"]
+offset_left = -51.0
+offset_top = -61.0
+offset_right = 46.0
+offset_bottom = -37.0
+text = "GG! You Got:"
+label_settings = ExtResource("6_b5b84")
+
+[node name="Label" type="Label" parent="Menu/PanelContainer"]
+custom_minimum_size = Vector2(0, 94)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Left: A, Left Arrow
+Right: D, Right Arrow
+Jump:  W, Up Arrow, Space
+*Gamepad Supported*"
+label_settings = SubResource("LabelSettings_nfm57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Menu/PanelContainer"]
+modulate = Color(0.458824, 0.611765, 1, 1)
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("7_t385i")
+theme_override_font_sizes/font_size = 36
+text = "Play"
+script = ExtResource("8_o2vyp")
+
+[node name="Label2" type="Label" parent="Menu/PanelContainer"]
+layout_mode = 2
+text = "R to reset at any time
+
+
+
+
+"
+label_settings = SubResource("LabelSettings_o2vyp")
+horizontal_alignment = 1
+
+[node name="MedalPlaceholder" type="Label" parent="Menu/PanelContainer"]
+layout_mode = 2
+text = "Get A Time Under
+40 Seconds
+To earn a Medal!
+"
+label_settings = SubResource("LabelSettings_b5b84")
+horizontal_alignment = 1
+script = ExtResource("8_fbb48")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 5
@@ -27,6 +153,6 @@ offset_right = 32.0
 offset_bottom = 24.0
 grow_horizontal = 2
 text = "00:00.00"
-label_settings = SubResource("LabelSettings_jo1ms")
+label_settings = ExtResource("3_psnte")
 horizontal_alignment = 1
 vertical_alignment = 1
