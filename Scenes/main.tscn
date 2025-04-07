@@ -30,8 +30,8 @@ position = Vector2(1328, 1000)
 metadata/start = Vector2(1573.17, 1018.89)
 
 [node name="Hazard" parent="1" instance=ExtResource("7_6bp64")]
-position = Vector2(432, -192)
-scale = Vector2(5.81958, 0.565911)
+position = Vector2(424, -192)
+scale = Vector2(5.46779, 0.526669)
 
 [node name="Hazard2" parent="1" instance=ExtResource("7_6bp64")]
 position = Vector2(392, -352)
@@ -61,8 +61,8 @@ scale = Vector2(1.66002, 1)
 dir = -1
 
 [node name="Hazard5" parent="1" instance=ExtResource("7_6bp64")]
-position = Vector2(320, -440)
-scale = Vector2(8.50173, 0.526718)
+position = Vector2(312, -440)
+scale = Vector2(7.02789, 0.475535)
 
 [node name="CameraChange" parent="1" instance=ExtResource("10_hptm8")]
 position = Vector2(584, -552)
@@ -103,11 +103,11 @@ position = Vector2(-464, -128)
 scale = Vector2(0.996734, 13.5902)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1/Platforms/Area2D"]
-position = Vector2(-32.105, -4.49111e-06)
+position = Vector2(-96.3146, 5.00222e-12)
 shape = SubResource("RectangleShape2D_hptm8")
 
 [node name="Hazard6" parent="1" instance=ExtResource("7_6bp64")]
-position = Vector2(-904, -440)
+position = Vector2(-904, -376)
 scale = Vector2(-1.17517, 26.9597)
 
 [node name="Hazard7" parent="1" instance=ExtResource("7_6bp64")]
@@ -139,7 +139,7 @@ position = Vector2(-432, -1632)
 scale = Vector2(7.77113, 2.01343)
 
 [node name="Hazard11" parent="1" instance=ExtResource("7_6bp64")]
-position = Vector2(-168, -1312)
+position = Vector2(-168, -1304)
 scale = Vector2(11.2087, 2.08285)
 
 [node name="Treadmill4" parent="1" instance=ExtResource("8_344ge")]
@@ -160,8 +160,8 @@ position = Vector2(928, -624)
 scale = Vector2(0.8, 21.16)
 
 [node name="Low Grav4" parent="1" instance=ExtResource("9_d1ilt")]
-position = Vector2(536, -1072)
-scale = Vector2(4.57378, 1.73414)
+position = Vector2(536, -1040)
+scale = Vector2(4.66853, 2.40217)
 
 [node name="CameraChange5" parent="1" instance=ExtResource("10_hptm8")]
 position = Vector2(841.93, -958.799)

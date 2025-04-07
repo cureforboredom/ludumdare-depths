@@ -9,8 +9,6 @@ var delayed = []
 @onready var area = $Area2D
 
 func _ready() -> void:
-  print("platforms")
-  print(position)
   self.connect("send_to_main", owner._platforms)
   area.connect("body_entered", owner._start_platforms)
   for node in get_children():
