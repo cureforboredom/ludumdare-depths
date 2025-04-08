@@ -866,7 +866,7 @@ const Engine = (function () {
 			 * @returns {Promise} The service worker registration promise.
 			 */
 			installServiceWorker: function () {
-				if (this.config.serviceWorker && 'serviceWorker' in navigator) {
+				if (this.config.serviceWorker && false) {
 					try {
 						return navigator.serviceWorker.register(this.config.serviceWorker);
 					} catch (e) {
