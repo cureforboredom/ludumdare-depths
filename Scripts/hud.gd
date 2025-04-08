@@ -25,6 +25,7 @@ func _get_medal_placeholder(link):
 
 func _ready() -> void:
   self.connect("reset", owner._reset)
+  self.visible = true
 
 func _process(delta: float) -> void:
   if run:

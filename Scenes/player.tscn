@@ -135,6 +135,15 @@ floor_max_angle = 1.0472
 floor_snap_length = 5.3
 script = ExtResource("1_kyqiw")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cvnsp")
 
@@ -169,15 +178,6 @@ target_position = Vector2(0, 3)
 [node name="RayRightFloor" type="RayCast2D" parent="."]
 position = Vector2(-5, 13)
 target_position = Vector2(0, 3)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cvnsp")

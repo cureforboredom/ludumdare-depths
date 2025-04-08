@@ -10,16 +10,20 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "1.tmx": {
-            "scale": 3,
+            "scale": 0.3339,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -407.3333333333333,
-                "y": -1455.6666666666665
+                "x": -131.77598083258454,
+                "y": -284.5163222521712
             }
         },
         "background.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 0.125
+        },
+        "lava-sheet.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
         },
         "proto.tsx": {
             "scaleInDock": 4.7703,
@@ -44,6 +48,14 @@
         "tilemap.tsx": {
             "scaleInDock": 1.5,
             "scaleInEditor": 3.0122
+        },
+        "treadmill-sheet.tsx": {
+            "scaleInDock": 5.9072,
+            "scaleInEditor": 2.79
+        },
+        "treadmill.tsx": {
+            "scaleInDock": 6.7432,
+            "scaleInEditor": 17.6841
         }
     },
     "last.exportedFilePath": "/home/cure/code/ludumdare/Scenes",
@@ -60,6 +72,9 @@
     "project": "ludum.tiled-project",
     "recentFiles": [
         "1.tmx",
+        "treadmill-sheet.tsx",
+        "treadmill.tsx",
+        "lava-sheet.tsx",
         "testlevel.tmx",
         "tilemap.tsx",
         "background.tsx",
@@ -69,7 +84,7 @@
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 4096,
-        "width": 4096
+        "height": 16,
+        "width": 16
     }
 }

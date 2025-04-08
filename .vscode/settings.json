@@ -4,9 +4,12 @@
     "animbody",
     "animplayer",
     "decel",
+    "divident",
     "elif",
     "fmod",
+    "fract",
     "onready",
+    "smoothstep",
     "tscn"
   ]
 }

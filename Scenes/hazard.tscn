@@ -1,19 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://olebr2tac77e"]
+[gd_scene load_steps=6 format=3 uid="uid://olebr2tac77e"]
 
 [ext_resource type="Script" uid="uid://dtmexkfmy5c5n" path="res://Scripts/hazard.gd" id="1_ci3js"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5ydo"]
 size = Vector2(32, 32)
 
+[sub_resource type="Gradient" id="Gradient_ci3js"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.438776, 0.882653)
+colors = PackedColorArray(0.980392, 0.431373, 0.184314, 1, 0.917647, 0.101961, 0.164706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a5ydo"]
+gradient = SubResource("Gradient_ci3js")
+width = 2
+height = 3
+fill = 2
+fill_from = Vector2(0.589744, 0.183761)
+fill_to = Vector2(0.467949, 0.893162)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ci3js"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape_offset = Vector3(0, -13, 0)
+emission_shape = 3
+emission_box_extents = Vector3(16, 4, 2)
+angle_min = -4.99999
+angle_max = 5.00001
+spread = 0.0
+gravity = Vector3(0, 1, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 2.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+
 [node name="Hazard" type="Area2D"]
-modulate = Color(1, 0, 0, 0.160784)
 show_behind_parent = true
 script = ExtResource("1_ci3js")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a5ydo")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 256
+texture = SubResource("GradientTexture2D_a5ydo")
+lifetime = 8.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_ci3js")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
