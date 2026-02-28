@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 const float dim = 0.2;
-const float glow = 0.000015;
+const float glow = 0.000025;
 uniform sampler2D screen_texture: hint_screen_texture, repeat_disable, filter_linear_mipmap;
 
 void fragment() {

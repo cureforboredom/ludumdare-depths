@@ -11,5 +11,19 @@
     "onready",
     "smoothstep",
     "tscn"
-  ]
+  ],
+  "godotTools.editorPath.godot4": "/home/cure/.local/share/godot/Godot_v4.6.1-stable_linux.x86_64",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.godot": true,
+    "**/.vscode": true,
+    "**/.gitignore": true,
+    "**/.gitattributes": true,
+    "**/.editorconfig": true
+  },
+  "explorerExclude.backup": {}
 }
